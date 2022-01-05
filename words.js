@@ -1,5 +1,3 @@
-import { stringify } from "querystring";
-
 // object that stores the text, source for every card.
 const word_dict = {
     ear: {text: "This is the Abyss card", source: "https://readwords.s3.us-west-1.amazonaws.com/ear.png"}
