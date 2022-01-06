@@ -1,3 +1,5 @@
+// import { stringify } from "querystring";
+
 // object that stores the text, source for every card.
 const word_dict = {
     ear: {text: "This is the Abyss card", source: "https://readwords.s3.us-west-1.amazonaws.com/ear.png"}
@@ -41,6 +43,10 @@ let i = 0; // Iterator for word_dict
 let j = 0; // Iterator for anim_dict
 
 
+async function getImage() {
+
+}
+
 function showWord() {
     let wordDiv = document.getElementById("wordDiv")
     let lkp = Object.keys(word_dict)[i];
@@ -50,15 +56,16 @@ function showWord() {
 
     wordDiv.innerText = lkp;
     wordDiv.style.animation = word_anim_dict[j];
-    setTimeout(showImage, 4000);
+    setTimeout(showImage, 3000);
 } 
 
 function showImage() {
     let img = document.getElementById("cardImg");
     let lkp = Object.keys(word_dict)[i];
-    img.style.animation = img_anim_dict[j];
+    
     img.src = word_dict[lkp].source
-
+    
+    if (img.complete) {img.style.animation = img_anim_dict[j]};
     if (Object.keys(word_dict).length > i + 1) {i++} else {i = 0};
     if (Object.keys(word_anim_dict).length > j + 1) {j++} else {j = 0};
 }
