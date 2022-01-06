@@ -52,7 +52,14 @@ function showWord() {
     let lkp = Object.keys(word_dict)[i];
     let img = document.getElementById("cardImg");
 
-    img.src = ''
+    // img.src = ''
+
+    (async () => {
+        img.src = ''
+        await img.decode();
+        // img is ready to use
+        wordDiv.innerText = lkp;    
+      })();    
 
     wordDiv.innerText = lkp;
     wordDiv.style.animation = word_anim_dict[j];
@@ -64,7 +71,7 @@ function showImage() {
     let lkp = Object.keys(word_dict)[i];
     
     img.src = word_dict[lkp].source
-    
+
     if (img.complete) {img.style.animation = img_anim_dict[j]};
     if (Object.keys(word_dict).length > i + 1) {i++} else {i = 0};
     if (Object.keys(word_anim_dict).length > j + 1) {j++} else {j = 0};
