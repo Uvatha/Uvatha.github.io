@@ -43,36 +43,41 @@ let i = 0; // Iterator for word_dict
 let j = 0; // Iterator for anim_dict
 
 
-async function getImage() {
-
-}
 
 function showWord() {
     let wordDiv = document.getElementById("wordDiv")
-    let lkp = Object.keys(word_dict)[i];
-    let img = document.getElementById("cardImg");
+    let cardDiv = document.getElementById("cardDiv");
+    let wordlkp = Object.keys(word_dict)[i];
+    // let img = document.getElementById("cardImg");
 
-    // img.src = ''
+    cardDiv.innerHTML = ""
 
-    (async () => {
-        img.src = ''
-        await img.decode();
-        // img is ready to use
-        wordDiv.innerText = lkp;    
-      })();    
+    wordDiv.innerText = wordlkp;
+    // img.style.opacity = "0";
 
-    wordDiv.innerText = lkp;
+    // (async () => {
+    //     img.src = ''
+    //     await img.decode();
+    //     // img is ready to use
+    //     wordDiv.innerText = lkp;    
+    //   })();    
+
     wordDiv.style.animation = word_anim_dict[j];
     setTimeout(showImage, 3000);
 } 
 
 function showImage() {
-    let img = document.getElementById("cardImg");
+    let cardDiv = document.getElementById("cardDiv");
     let lkp = Object.keys(word_dict)[i];
-    
-    img.src = word_dict[lkp].source
+    let imgURL = word_dict[lkp].source
 
-    if (img.complete) {img.style.animation = img_anim_dict[j]};
+    cardDiv.innerHTML = `<img id="cardImg" src=${imgURL}><img>`
+
+    let img = document.getElementById("cardImg")    
+    // img.style.opacity = "1";
+
+    img.style.animation = img_anim_dict[j]
+    // if (img.complete) {img.style.animation = img_anim_dict[j]};
     if (Object.keys(word_dict).length > i + 1) {i++} else {i = 0};
     if (Object.keys(word_anim_dict).length > j + 1) {j++} else {j = 0};
 }
